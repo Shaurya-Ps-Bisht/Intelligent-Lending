@@ -4,7 +4,7 @@ A modern Next.js application that leverages AWS services for intelligent mortgag
 
 ## 🏗️ Architecture
 
-![Architecture Diagram](arch.png)
+![Architecture Diagram](resources/arch.png)
 
 ## 🔗 Related Repositories
 
