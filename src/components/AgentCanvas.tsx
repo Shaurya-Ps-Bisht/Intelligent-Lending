@@ -176,7 +176,7 @@ export default function AgentCanvas({ agentType, data, className = '' }: AgentCa
     });
   };
 
-  const renderContent = (ref: React.RefObject<HTMLDivElement>, isExpandedView = false) => (
+  const renderContent = (ref: React.RefObject<HTMLDivElement | null>, isExpandedView = false) => (
     <div className="p-4 space-y-4">
       {parsedContent.length > 0 ? (
         parsedContent.map((item) => {
