@@ -96,7 +96,7 @@ export default function JsonViewer({ content, filename }: JsonViewerProps) {
     }
   };
 
-  const renderJsonNode = (value: any, key: string, path: string, level: number = 0): JSX.Element => {
+  const renderJsonNode = (value: any, key: string, path: string, level: number = 0): React.JSX.Element => {
     const type = getValueType(value);
     const isExpanded = expandedPaths.has(path);
     const hasChildren = type === 'object' || type === 'array';
