@@ -1,237 +1,141 @@
-# Bedrock AgentCore Streaming Interface
+# 🏠 Intelligent Lending - AI-Powered Mortgage Processing
 
-A Next.js application for streaming data from AWS Bedrock AgentCore agents with real-time visualization across 5 different agent types.
+A modern Next.js application that leverages AWS services for intelligent mortgage application processing and analysis.
 
-## Features
+## ✨ Features
 
-- **AWS Cognito Authentication**: Secure login with AWS Cognito User Pools
-- **Real-time Streaming**: Stream data from Bedrock AgentCore endpoints
-- **5 Agent Canvases**: Separate visualization for VALIDATION, RESEARCH, ANALYSIS, SYNTHESIS, and EXECUTION agents
-- **Live Data Parsing**: Parse JSON chunks and display agent-specific data
-- **Secure Configuration**: Agent ARN stored server-side for security
-- **Responsive UI**: Clean, modern interface with Tailwind CSS
-- **Error Handling**: Comprehensive error handling and user feedback
+- **🔐 AWS Cognito Authentication**: Secure login with AWS Cognito User Pools
+- **⚡ Real-time Streaming**: Stream data from AWS Lambda and Bedrock AgentCore endpoints
+- **🤖 5 Agent Canvases**: Separate visualization for VALIDATION, RESEARCH, ANALYSIS, SYNTHESIS, and EXECUTION agents
+- **📊 Advanced JSON Viewer**: Beautiful, searchable JSON viewer for output files
+- **📁 S3 File Management**: Browse and process input files, view output results
+- **🎨 Modern UI**: Glassmorphism design with gradients, animations, and responsive layout
+- **🌙 Dark Mode**: Full dark mode support
+- **📱 Responsive**: Works on desktop, tablet, and mobile devices
 
-## Getting Started
+## 🚀 Tech Stack
+
+- **Frontend**: Next.js 16, React 19, TypeScript
+- **Styling**: Tailwind CSS 4 with custom gradients and animations
+- **Authentication**: AWS Cognito
+- **Backend**: AWS Lambda, S3
+- **AI**: Amazon Bedrock AgentCore
+- **Deployment**: AWS Amplify
+
+## 🛠️ Setup & Installation
 
 ### Prerequisites
-
 - Node.js 18+ 
-- npm, yarn, or pnpm
-- AWS Bedrock AgentCore access with valid agent ARN
-- AWS Cognito User Pool configured for authentication
+- AWS Account with configured services
+- AWS Cognito User Pool
+- AWS Lambda function for S3 operations
 
-### Installation
-
-1. Clone the repository
-2. Install dependencies:
-
-```bash
-npm install
-# or
-yarn install
-# or
-pnpm install
-```
-
-3. Set up environment variables:
-
-Copy `.env.example` to `.env.local` and configure:
+### Environment Variables
+Create a `.env.local` file with:
 
 ```env
-# AWS Configuration
-AWS_REGION=us-east-1
-
-# Bedrock AgentCore Configuration (Server-side only - KEEP SECRET)
-BEDROCK_AGENT_ARN=arn:aws:bedrock-agentcore:us-east-1:123456789012:agent/ABCDEFGHIJ
-
-# AWS Cognito Configuration
-NEXT_PUBLIC_AWS_COGNITO_REGION=us-east-1
-NEXT_PUBLIC_AWS_COGNITO_USER_POOL_ID=us-east-1_XXXXXXXXX
-NEXT_PUBLIC_AWS_COGNITO_USER_POOL_WEB_CLIENT_ID=abcdefghijklmnopqrstuvwxyz
-
-# Optional: Set default values for development
-NEXT_PUBLIC_DEFAULT_SESSION_ID=default-session-123
+NEXT_PUBLIC_AWS_REGION=ap-south-1
+NEXT_PUBLIC_COGNITO_USER_POOL_ID=your-user-pool-id
+NEXT_PUBLIC_COGNITO_USER_POOL_CLIENT_ID=your-client-id
+AWS_REGION=ap-south-1
+AWS_ACCESS_KEY_ID=your-access-key
+AWS_SECRET_ACCESS_KEY=your-secret-key
 ```
 
-**Important**: The `BEDROCK_AGENT_ARN` is kept server-side for security and will not be exposed to the client.
-
-4. Run the development server:
-
+### Installation
 ```bash
+# Clone the repository
+git clone <your-repo-url>
+cd homebuying-frontend
+
+# Install dependencies
+npm install
+
+# Run development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
-5. Open [http://localhost:3000](http://localhost:3000) in your browser
+## 📋 Usage
 
-## Usage
+1. **Sign in** with your AWS Cognito credentials
+2. **Custom Tab**: Enter custom prompts for AI processing
+3. **Input Files Tab**: Browse and process mortgage application files from S3
+4. **Output Files Tab**: View AI-generated decision files with the advanced JSON viewer
+5. **Real-time Processing**: Watch as AI agents process data in real-time across multiple canvases
 
-### Authentication
+## 🏗️ Architecture
 
-1. **Sign In**: Use your AWS Cognito credentials to authenticate
-2. **Automatic Token Management**: Bearer tokens are automatically obtained from Cognito
-
-### Configuration
-
-Fill in the required fields in the configuration form:
-
-- **Session ID** (required): Unique session identifier
-- **Endpoint Name** (optional): Defaults to "DEFAULT"
-- **Payload**: JSON payload to send to the agent
-
-**Note**: Agent ARN and Bearer Token are automatically handled by the application.
-
-### Streaming Data
-
-1. Sign in with your Cognito credentials
-2. Configure your session parameters
-3. Click "Start Streaming" to begin receiving data
-4. Watch as data streams into the appropriate agent canvases
-5. Use "Clear Data" to reset all canvases
-6. Sign out when finished
-
-### Expected Data Format
-
-The application expects streaming chunks in this format:
-
-```json
-{
-  "type": "agent_start",
-  "agent": "VALIDATION",
-  "timestamp": "2025-10-22T11:23:28Z"
-}
+```
+┌─────────────────┐    ┌──────────────┐    ┌─────────────────┐
+│   Next.js App   │───▶│ AWS Cognito  │───▶│  AWS Lambda     │
+│   (Frontend)    │    │ (Auth)       │    │ (S3 Operations) │
+└─────────────────┘    └──────────────┘    └─────────────────┘
+         │                                           │
+         ▼                                           ▼
+┌─────────────────┐                        ┌─────────────────┐
+│ Bedrock Agent   │                        │   Amazon S3     │
+│ Core (AI)       │                        │ (File Storage)  │
+└─────────────────┘                        └─────────────────┘
 ```
 
-```json
-{
-  "type": "agent_chunk",
-  "agent": "VALIDATION", 
-  "data": "<thinking> I need to validate...",
-  "timestamp": "2025-10-22T11:23:29Z"
-}
+
+## 🚀 Deployment
+
+### AWS Amplify (Recommended)
+1. Push code to GitHub/GitLab/Bitbucket
+2. Connect repository to AWS Amplify
+3. Configure environment variables
+4. Deploy automatically
+
+### Manual Build
+```bash
+npm run build
+npm start
 ```
 
-### Supported Agent Types
-
-- **VALIDATION**: Blue canvas - Data validation and verification
-- **RESEARCH**: Green canvas - Research and information gathering  
-- **ANALYSIS**: Purple canvas - Data analysis and processing
-- **SYNTHESIS**: Orange canvas - Information synthesis and combination
-- **EXECUTION**: Red canvas - Action execution and implementation
-
-## Architecture
-
-### Components
-
-- **AuthProvider**: Cognito authentication context provider
-- **LoginForm**: Secure login interface
-- **StreamingInterface**: Main component handling the UI and streaming logic
-- **AgentCanvas**: Individual canvas component for each agent type
-- **useAgentStream**: Custom hook for managing streaming state and data
-
-### API Routes
-
-- **`/api/invoke-agent`**: Proxy endpoint for Bedrock AgentCore API calls with streaming support
-
-### Key Files
+## 📁 Project Structure
 
 ```
 src/
-├── app/
-│   ├── api/invoke-agent/route.ts    # API route for agent invocation
-│   ├── page.tsx                     # Main page with auth guard
-│   └── layout.tsx                   # App layout with auth provider
-├── components/
-│   ├── AuthProvider.tsx            # Cognito authentication provider
-│   ├── LoginForm.tsx               # Login interface
-│   ├── StreamingInterface.tsx       # Main streaming interface
-│   └── AgentCanvas.tsx             # Individual agent canvas
-├── hooks/
-│   └── useAgentStream.ts           # Streaming logic hook
-├── lib/
-│   └── cognito.ts                  # Cognito authentication utilities
-└── types/
-    └── agent.ts                    # TypeScript type definitions
+├── app/                 # Next.js app router
+│   ├── api/            # API routes
+│   └── layout.tsx      # Root layout
+├── components/         # React components
+│   ├── StreamingInterface.tsx
+│   ├── JsonViewer.tsx
+│   ├── AgentCanvas.tsx
+│   └── AuthProvider.tsx
+├── hooks/              # Custom React hooks
+├── lib/                # Utility libraries
+└── services/           # API services
 ```
 
-## Development
+## 🔧 Configuration Files
 
-### Adding New Agent Types
+- `amplify.yml` - AWS Amplify build configuration
+- `next.config.ts` - Next.js configuration optimized for Amplify
+- `tailwind.config.ts` - Tailwind CSS configuration
+- `.env.example` - Environment variables template
 
-1. Update the `AgentType` in `src/types/agent.ts`
-2. Add the new agent to the `AgentData` interface
-3. Update the color mapping in `AgentCanvas.tsx`
-4. The streaming interface will automatically include the new agent
+## 🤝 Contributing
 
-### Customizing Styling
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
 
-The app uses Tailwind CSS. Modify the classes in the components or update the global styles in `src/app/globals.css`.
-
-## Troubleshooting
-
-### Common Issues
-
-1. **Authentication Errors**: 
-   - Verify Cognito User Pool ID and Client ID are correct
-   - Ensure user exists in the Cognito User Pool
-   - Check that the user pool allows the configured authentication flow
-
-2. **Agent ARN Configuration**: 
-   - Verify `BEDROCK_AGENT_ARN` is set correctly in `.env.local`
-   - Ensure the ARN format matches: `arn:aws:bedrock-agentcore:region:account:agent/agent-id`
-
-3. **CORS Errors**: Ensure your Bedrock AgentCore endpoint allows requests from your domain
-
-4. **Network Issues**: Check your AWS region configuration and network connectivity
-
-5. **Parsing Errors**: Ensure your agent returns data in the expected JSON format
-
-### Debug Mode
-
-Check the browser console for detailed logging of:
-- Received chunks
-- Parsing errors  
-- Network requests
-- Stream status
-
-## License
+## 📄 License
 
 This project is licensed under the MIT License.
-## AWS
- Amplify Deployment
 
-This application is designed to be deployed on AWS Amplify with secure environment variable management:
+## 🆘 Support
 
-### Environment Variables for Production
+For issues and questions:
+- Check the AWS documentation for service-specific issues
+- Review the Next.js documentation for frontend issues
+- Open an issue in this repository
 
-In your Amplify console, configure these environment variables:
+---
 
-**Build Settings:**
-- `AWS_REGION`: Your AWS region
-- `BEDROCK_AGENT_ARN`: Your agent ARN (kept secure on server-side)
-
-**Frontend Settings:**
-- `NEXT_PUBLIC_AWS_COGNITO_REGION`: Your Cognito region
-- `NEXT_PUBLIC_AWS_COGNITO_USER_POOL_ID`: Your User Pool ID
-- `NEXT_PUBLIC_AWS_COGNITO_USER_POOL_WEB_CLIENT_ID`: Your Client ID
-- `NEXT_PUBLIC_DEFAULT_SESSION_ID`: Default session ID (optional)
-
-### Security Benefits
-
-- **Agent ARN Protection**: The agent ARN is never exposed to the client-side code
-- **Cognito Integration**: Secure authentication with AWS Cognito
-- **Token Management**: Automatic bearer token handling
-- **Environment Isolation**: Different configurations for dev/staging/production
-
-### Deployment Steps
-
-1. Connect your repository to AWS Amplify
-2. Configure environment variables in the Amplify console
-3. Set up your Cognito User Pool and users
-4. Deploy and test the authentication flow
-
-The application will automatically use the server-side agent ARN and client-side Cognito configuration.
+Built with ❤️ using AWS services and modern web technologies.
