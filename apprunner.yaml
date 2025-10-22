@@ -1,0 +1,20 @@
+version: 1.0
+runtime: docker
+build:
+  commands:
+    build:
+      - echo "Building Next.js application for App Runner"
+      - docker build -t intelligent-lending .
+run:
+  runtime-version: latest
+  command: node server.js
+  network:
+    port: 3000
+    env: PORT
+  env:
+    - name: NODE_ENV
+      value: production
+    - name: PORT
+      value: "3000"
+    - name: HOSTNAME
+      value: "0.0.0.0"

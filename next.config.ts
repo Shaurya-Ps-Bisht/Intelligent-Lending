@@ -7,9 +7,13 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true
   },
-  // Amplify-specific configurations
+  // Environment variables configuration
   env: {
     CUSTOM_KEY: process.env.CUSTOM_KEY,
+  },
+  // Experimental features for better performance
+  experimental: {
+    serverComponentsExternalPackages: ['@aws-sdk/client-lambda'],
   },
 };
 

@@ -2,6 +2,14 @@
 
 A modern Next.js application that leverages AWS services for intelligent mortgage application processing and analysis.
 
+## 🏗️ Architecture
+
+![Architecture Diagram](arch.png)
+
+## 🔗 Related Repositories
+
+- **[Intelligent Lending Agents](https://github.com/Shaurya-Ps-Bisht/Intelligent-Lending-Agents)** - Strands Agent codebase with AI agent implementations
+
 ## ✨ Features
 
 - **🔐 AWS Cognito Authentication**: Secure login with AWS Cognito User Pools
