@@ -12,10 +12,12 @@ function getAwsRegion(): string {
 }
 
 function getAgentArn(): string {
-  const agentArn = process.env.NEXT_PUBLIC_BEDROCK_AGENT_ARN;
-  if (!agentArn) {
-    throw new Error('BEDROCK_AGENT_ARN environment variable is not configured');
+  const agentArn = process.env.BEDROCK_AGENT_ARN || 'arn:aws:bedrock-agentcore:ap-south-1:203918876766:runtime/app-qWMGSpFbaT';
+
+  if (!process.env.BEDROCK_AGENT_ARN) {
+    console.warn('BEDROCK_AGENT_ARN not found in environment, using hardcoded ARN');
   }
+
   return agentArn;
 }
 
