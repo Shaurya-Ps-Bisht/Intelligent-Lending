@@ -36,10 +36,6 @@ export async function POST(request: NextRequest) {
     // Initialize Lambda client with credentials from environment
     const lambdaClient = new LambdaClient({ 
       region: getAwsRegion(),
-      credentials: {
-        accessKeyId: process.env.AWS_ACCESS_KEY_ID!,
-        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY!,
-      }
     });
 
     // Prepare Lambda payload - match the format expected by your Lambda function

@@ -12,7 +12,7 @@ function getAwsRegion(): string {
 }
 
 function getAgentArn(): string {
-  const agentArn = process.env.BEDROCK_AGENT_ARN;
+  const agentArn = process.env.NEXT_PUBLIC_BEDROCK_AGENT_ARN;
   if (!agentArn) {
     throw new Error('BEDROCK_AGENT_ARN environment variable is not configured');
   }
