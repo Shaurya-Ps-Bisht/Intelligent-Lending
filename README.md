@@ -6,7 +6,7 @@ A modern Next.js application that leverages AWS services for intelligent mortgag
 
 The application is hosted on AWS App Runner. You can access it here:
 
-**Website Link:** [https://aum5viyshy.ap-south-1.awsapprunner.com](https://aum5viyshy.ap-south-1.awsapprunner.com)
+**Website Link:** [https://qrpd3s9pmw.ap-south-1.awsapprunner.com/](https://qrpd3s9pmw.ap-south-1.awsapprunner.com/)
 
 To explore the full capabilities of the application, including the AgentCore runtime, please use the following credentials to log in:
 
