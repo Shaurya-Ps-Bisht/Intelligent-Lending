@@ -5,9 +5,9 @@ import { signIn, signOut, getCurrentUser, fetchAuthSession } from '@aws-amplify/
 const amplifyConfig = {
   Auth: {
     Cognito: {
-      region: process.env.NEXT_PUBLIC_AWS_COGNITO_REGION,
-      userPoolId: process.env.NEXT_PUBLIC_AWS_COGNITO_USER_POOL_ID,
-      userPoolClientId: process.env.NEXT_PUBLIC_AWS_COGNITO_USER_POOL_WEB_CLIENT_ID,
+      region: "ap-south-1",
+      userPoolId: "ap-south-1_lEp06OZct",
+      userPoolClientId: "19egd959fimv006ltan1v1djea",
     }
   }
 };
