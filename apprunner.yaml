@@ -1,13 +1,15 @@
 version: 1.0
-runtime: docker
+runtime: nodejs18
 build:
   commands:
     build:
-      - echo "Building Next.js application for App Runner"
-      - docker build -t intelligent-lending .
+      - echo "Installing dependencies..."
+      - npm ci
+      - echo "Building Next.js application..."
+      - npm run build
 run:
-  runtime-version: latest
-  command: node server.js
+  runtime-version: 18
+  command: npm start
   network:
     port: 3000
     env: PORT
@@ -16,5 +18,3 @@ run:
       value: production
     - name: PORT
       value: "3000"
-    - name: HOSTNAME
-      value: "0.0.0.0"
