@@ -23,6 +23,12 @@ run:
   network:
     port: 3000
   env:
+    - name: NEXT_PUBLIC_AWS_COGNITO_REGION
+      value: "ap-south-1"
+    - name: NEXT_PUBLIC_AWS_COGNITO_USER_POOL_ID
+      value: "ap-south-1_lEp06OZct"
+    - name: NEXT_PUBLIC_AWS_COGNITO_USER_POOL_WEB_CLIENT_ID
+      value: "19egd959fimv006ltan1v1djea"
     - name: NODE_ENV
       value: production
     - name: PORT
