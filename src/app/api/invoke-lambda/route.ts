@@ -34,7 +34,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Initialize Lambda client with credentials from environment
-    const lambdaClient = new LambdaClient({ 
+    const lambdaClient = new LambdaClient({
       region: getAwsRegion(),
     });
 
@@ -54,7 +54,7 @@ export async function POST(request: NextRequest) {
 
     // Invoke Lambda
     const response = await lambdaClient.send(command);
-    
+
     if (response.StatusCode !== 200) {
       throw new Error(`Lambda invocation failed with status: ${response.StatusCode}`);
     }
@@ -62,7 +62,7 @@ export async function POST(request: NextRequest) {
     // Parse response
     const payloadString = new TextDecoder().decode(response.Payload);
     const result = JSON.parse(payloadString);
-    
+
     return NextResponse.json({
       statusCode: 200,
       body: result
@@ -71,8 +71,8 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('Lambda invocation error:', error);
     return NextResponse.json(
-      { 
-        error: 'Failed to invoke Lambda function', 
+      {
+        error: 'Failed to invoke Lambda function',
         details: error instanceof Error ? error.message : 'Unknown error'
       },
       { status: 500 }
