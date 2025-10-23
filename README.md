@@ -2,6 +2,17 @@
 
 A modern Next.js application that leverages AWS services for intelligent mortgage application processing and analysis.
 
+## 🌐 Live Application
+
+The application is hosted on AWS App Runner. You can access it here:
+
+**Website Link:** [https://aum5viyshy.ap-south-1.awsapprunner.com](https://aum5viyshy.ap-south-1.awsapprunner.com)
+
+To explore the full capabilities of the application, including the AgentCore runtime, please use the following credentials to log in:
+
+- **Username:** `shaurya-test`
+- **Password:** `NewPassword123!`
+
 ## 🏗️ Architecture
 
 ![Architecture Diagram](resources/arch.png)
